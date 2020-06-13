@@ -1,0 +1,17 @@
+.forecast-summaries {
+    display: flex;
+}
+
+@media screen and (orientation: portrait) {
+    .forecast-summaries {
+        flex-direction: column;
+        align-content: space-between;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .forecast-summaries {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

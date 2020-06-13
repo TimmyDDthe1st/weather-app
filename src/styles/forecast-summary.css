@@ -1,0 +1,11 @@
+@media screen and (orientation: portrait) {
+    .forecast-summary {
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .forecast-summary {
+        margin-right: 5px;
+    }
+}

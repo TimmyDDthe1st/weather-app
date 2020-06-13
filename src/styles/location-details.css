@@ -1,0 +1,16 @@
+.location-details {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (orientation: portrait) {
+    .location-details {
+        justify-content: center;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .location-details {
+        justify-content: flex-start;
+    }
+}
