@@ -1,29 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import WeatherIcon from 'react-icons-weather';
+import Moment from 'moment';
+
 
 import '../styles/forecast-summary.css';
 
-const ForecastSummary = ({date, temperatureMax, temperatureMin, description, icon}) => {
+const ForecastSummary = ({date, temperatureMax, temperatureMin, description, icon, onForecastSelect}) => {
 return <div className='forecast-summary'>
             <div>
-                <span className='date'>{date}</span>
+                <span className='date' data-testid='date-id-formatted'>{                    
+                    Moment.unix(date).format('ddd Do MMM')
+                }</span>
             </div>
 
             <div>
-                <span className='temperatureMax'>{temperatureMax}</span>
+                <span className='temperatureMax' data-testid='temperature-max'>{temperatureMax}</span>
             </div>
 
             <div>
-                <span className='temperatureMin'>{temperatureMin}</span>
+                <span className='temperatureMin' data-testid='temperature-min'>{temperatureMin}</span>
             </div>
 
             <div>
-                <span className='description'>{description}</span>
+                <span className='description' data-testid='description-id'>{description}</span>
             </div>
 
             <div>
-                <span className='icon'>{icon}</span>
+                <WeatherIcon name='owm' iconId={icon} flip='horizontal' rotate='90' data-testid='icon-id' className='icon'/>
             </div>
+            <button value={date} onClick={() => {onForecastSelect(date)}}>
+                More Details
+            </button>
         </div>
 }
 

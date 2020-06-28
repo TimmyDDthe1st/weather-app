@@ -4,7 +4,7 @@ import ForecastSummary from './forecast-summary';
 
 import '../styles/forecast-summaries.css';
 
-const ForecastSummaries = ({forecasts}) => (
+const ForecastSummaries = ({forecasts, onForecastSelect}) => (
   <div className="forecast-summaries">
       {
         forecasts.map((forecast, key) => (
@@ -15,6 +15,7 @@ const ForecastSummaries = ({forecasts}) => (
                 temperatureMin={forecast.temperature.min}
                 description={forecast.description}
                 icon={forecast.icon}
+                onForecastSelect={onForecastSelect}
             />
           ))
       }
