@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LocationDetails from './location-details';
 import ForecastSummaries from './forecast-summaries';
-import ForecastDetails from './forecast-details'
+import ForecastDetails from './forecast-details';
+import SearchForm from './search-form';
 import Axios from 'axios';
 
 import '../styles/app.css';
 
-const App = (props) => {
+const App = () => {
     const [selectedDate, setSelectedDate] = useState(0);
     const [forecasts, setForecasts] = useState([]);
     const [location, setLocation] = useState({city: "", country: ""});
@@ -18,8 +19,6 @@ const App = (props) => {
           .then((response) => {
             setForecasts(response.data.forecasts);
             setLocation(response.data.location);
-
-            console.log(response.data)
           })
           .catch((error) => {
             console.log(error);
@@ -29,7 +28,19 @@ const App = (props) => {
 
     const handleForecastSelect = (date) => {
         setSelectedDate(date);
-        console.log(date);
+    }
+
+    const handleLocationSearch = (location) => {
+        Axios.get(`https://mcr-codes-weather.herokuapp.com/forecast?city=${location}`)
+          .then((response) => {
+            setForecasts(response.data.forecasts);
+            setLocation(response.data.location);
+
+            console.log(response.data)
+          })
+          .catch((error) => {
+            console.log(error);
+          })
     }
 
     return <div className='forecast'>
@@ -37,6 +48,7 @@ const App = (props) => {
             city={location.city} 
             country={location.country} 
         />
+        <SearchForm onSearchButtonPress={handleLocationSearch}/>
         <ForecastSummaries forecasts={forecasts} onForecastSelect={handleForecastSelect}/>
         {
             selectedForecast && (<ForecastDetails forecast={selectedForecast} />)

@@ -10,7 +10,7 @@ const ForecastSummary = ({date, temperatureMax, temperatureMin, description, ico
 return <div className='forecast-summary'>
             <div>
                 <span className='date' data-testid='date-id-formatted'>{                    
-                    Moment.unix(date).format('ddd Do MMM')
+                    Moment(date).format('ddd Do MMM')
                 }</span>
             </div>
 
